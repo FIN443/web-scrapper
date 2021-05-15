@@ -3,29 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <title>Search Results</title>
-    <style>
-      section {
-        display: grid;
-        gap: 20px;
-        grid-template-columns: repeat(4, 1fr);
-      }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
   </head>
   <body>
-    <h1>Search Results</h1>
-    <h3>Found {{resultsNumber}} results for: {{searchingBy}}</h3>
-    <a href="/export?word={{searchingBy}}">Export to CSV</a>
-    <section>
-      <h4>Title</h4>
-      <h4>Company</h4>
-      <h4>Location</h4>
-      <h4>Link</h4>
+    <header>
+      <h1>Search Results</h1>
+      <h2>Found {{resultsNumber}} results for: {{searchingBy}}</h2>
+      <h3>
+        <a href="/export?word={{searchingBy}}">Export to CSV</a>
+      </h3>
+      <h4>
+        <a href="/">Go back ↩</a>
+      </h4>
+    </header>
+    <main>
       {% for job in jobs %}
-      <span>{{job.title}}</span>
-      <span>{{job.company}}</span>
-      <span>{{job.location}}</span>
-      <a href="{{job.apply_link}}" target="_blank">Apply</a>
+      <div>
+        <h3>
+          <a href="{{job.apply_link}}" target="_blank">{{job.title}}</a>
+        </h3>
+        <h4>{{job.company}} • {{job.location}}</h4>
+        <hr />
+      </div>
       {% endfor %}
-    </section>
+    </main>
   </body>
 </html>
